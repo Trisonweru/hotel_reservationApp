@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Material Design for Bootstrap fonts and icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons"
+    />
+
+    <!-- Material Design for Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/bootstrap-material-design.min.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/main.css')}}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>{{title}}</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">ReserveMyRoom</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse d-flex justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/">Home</a>
+            </li>
+            {% if session['myuser'] == "admin" %}
+            <li class="nav-item">
+              <a class="nav-link" href="/add_listing">Add Listing</a>
+            </li>
+            {% endif %} {% if session['myuser'] == "admin" %}
+            <li class="nav-item">
+              <a class="nav-link" href="/all_bookings">View Bookings</a>
+            </li>
+            {% endif %} {% if session['myuser'] == "customer" %}
+            <li class="nav-item">
+              <a class="nav-link" href="/view_bookings">View Booking</a>
+            </li>
+            {% endif %} {% if "username" in session%}
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {%block content%} {%endblock content%}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="{{url_for('static', filename='js/jquery-3.2.1.slim.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/popper.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap-material-design.js')}}"></script>
+    <script>
+      $(document).ready(function () {
+        $("body").bootstrapMaterialDesign();
+      });
+    </script>
+  </body>
+</html>

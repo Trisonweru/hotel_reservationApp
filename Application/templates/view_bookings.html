@@ -1,0 +1,30 @@
+{% extends "layout.html"%} {%block content%}
+<div class="container1">
+  <div class="cont_wrapper">
+    <h1 class="text-center mt-5" style="color: brown">My Bookings</h1>
+    {% include "_msgs.html"%} {% from "_formhelpers.html" import render_field%}
+    <div class="card_wrapper">
+      {% for item in bookings %}
+      <div class="card2" style="border-radius: 8px">
+        <div class="content_wrapper">
+          <div class="card-body">
+            <h4 class="item2_heading">{{item.name}}</h4>
+            <p class="item_price" style="color: #a22929">
+              Price:
+              <span style="font-weight: bold">${{item.price}}</span> for
+              {{item.days}} days
+            </p>
+            <p class="">
+              <span style="font-weight: bold">From:</span> {{item.date_in}}
+            </p>
+            <p class="">
+              <span style="font-weight: bold">To:</span>{{item.date_out}}
+            </p>
+          </div>
+        </div>
+      </div>
+      {%endfor%}
+    </div>
+  </div>
+</div>
+{%endblock content%}

@@ -1,0 +1,36 @@
+{% extends "layout.html"%} {%block content%}
+<div class="container1">
+  <div class="cont_wrapper">
+    {%for product in products%}
+    <div class="card1" style="border-radius: 8px">
+      <div class="image_wrapper">
+        <img
+          src="{{url_for('static', filename='images/'+product.image_1)}}"
+          alt="{{product.name}}"
+          width="400"
+          height="200"
+          class="card-img-top"
+        />
+      </div>
+      <div class="content_wrapper">
+        <div class="card-body">
+          <h4 class="item_heading">{{product.name}}</h4>
+          <p class="item_price" style="color: #a22929">
+            Price: <span style="font-weight: bold">${{product.price}}</span>
+          </p>
+          <h3 class="description_heading">Description</h3>
+          <p class="item_description">{{product.description}}</p>
+        </div>
+        <div class="card-footer">
+          <a
+            href="{{url_for('bookings', id=product.id)}}"
+            class="float-left btn-outline btn-sm"
+            >Book Reservation</a
+          >
+        </div>
+      </div>
+    </div>
+    {%endfor%}
+  </div>
+</div>
+{%endblock content%}
